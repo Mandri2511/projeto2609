@@ -1,0 +1,35 @@
+DROP DATABASE bdfilmes;
+
+CREATE DATABASE bdfilmes;
+
+CREATE TABLE generoFilme (
+    codGenero int primary key AUTO_INCREMENT,
+    generoFilme varchar(20)
+);
+
+CREATE TABLE ator (
+    codAtor int primary key AUTO_INCREMENT,
+    ator varchar(50)
+);
+
+CREATE TABLE diretorFilme(
+    codDiretor int primary key AUTO_INCREMENT,
+    nomeDiretor varchar(50)
+);
+
+CREATE TABLE filme (
+    codFilme int primary key auto_increment,
+    filme varchar(50),
+    codGenero int NOT NULL,
+    codDiretor int NOT NULL,
+    foreign key (codGenero) references generoFilme(codGenero),
+    foreign key (codDiretor) references diretorFilme(codDiretor)
+);
+
+CREATE TABLE atorFilme (
+	codAtorFilme int PRIMARY KEY AUTO_INCREMENT,
+    codAtor int not null,
+    codFilme int NOT null,
+    FOREIGN KEY (codAtor) REFERENCES ator (codAtor),
+    FOREIGN KEY (codFilme) REFERENCES filme (codFilme)
+);
